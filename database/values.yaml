@@ -3,12 +3,13 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
-image:
-  repository: houimel/database_image
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+container:
+  name: my-python-container
+  image:
+    repository: houimel/database_image
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: latest
 
 network:
   name: mynetwork

@@ -7,7 +7,6 @@ replicaCount: 1
 container:
   name: my-python-container
   image: houimel/database_image:latest
-  args: ["your", "command", "here"]
 
 network:
   name: mynetwork

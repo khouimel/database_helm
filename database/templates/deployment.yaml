@@ -1,17 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
 spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+      tier: frontend
   template:
-    spec:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+        tier: frontend
+    spec: # Pod spec
       containers:
-        - name: {{ .Values.container.name }}
-          image: {{ .Values.container.image }}
-      {{- if .Values.network.name }}
-      dnsConfig:
-        options:
-          - name: ndots
-            value: "2"
-      hostname: example.com
-      {{- end }}
+      - name: mycontainer
+        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.configmap.name }}
+        resources:
+          requests:
+            memory: "16Mi" 
+            cpu: "50m"    # 500milliCPUs (1/2 CPU)
+          limits:
+            memory: "128Mi"
+            cpu: "100m"

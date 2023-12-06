@@ -4,13 +4,12 @@
 
 replicaCount: 1
 
-container:
-  name: my-python-container
-  image:
-    repository: houimel/database_image
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: latest
+
+image:
+  repository: houimel/database_image
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: latest
 
 network:
   name: mynetwork

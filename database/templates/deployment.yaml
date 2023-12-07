@@ -31,15 +31,16 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{ .Values.container1.name }}
+          image: {{ .Values.container1.image }}
+          # Other container1 configurations
+        - name: {{ .Values.container2.name }}
+          image: {{ .Values.container2.image }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
+            - containerPort: {{ .Values.container2.port }}
+          env:
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.container2.password | quote }}
           livenessProbe:
             httpGet:
               path: /

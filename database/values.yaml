@@ -8,7 +8,13 @@ replicaCount: 2
 container1:
   name: myapps
   image: houimel/database_image:latest
-  image: postgres:latest
+  network: mynetwork
+  port: 5432
+  password: Passw0rd
+  
+container2:
+  name: postgres
+  image: docker.io/library/postgres:latest
   network: mynetwork
   port: 5432
   password: Passw0rd

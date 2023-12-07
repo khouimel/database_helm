@@ -6,7 +6,7 @@ replicaCount: 2
 
 
 container1:
-  name: my-python-container
+  name: myapps
   image: houimel/database_image:latest
   # Other configuration options for the existing container
 

@@ -8,7 +8,12 @@ replicaCount: 1
 container1:
   name: myapps
   image: houimel/database_image:latest
-  network: mynetwork
+  network: 
+    name: mynetwork
+    subnet: "10.89.5.0/24"
+    gateway: "10.89.5.1"
+    internal: false
+    dns_enabled: true
   port: 5432
   password: Passw0rd
   

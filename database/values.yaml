@@ -9,6 +9,7 @@ container1:
   name: myapps
   image: houimel/database_image:latest
   # Other configuration options for the existing container
+  network: mynetwork
 
 container2:
   name: postgres

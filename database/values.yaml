@@ -8,8 +8,9 @@ replicaCount: 2
 container1:
   name: myapps
   image: houimel/database_image:latest
-  # Other configuration options for the existing container
   network: mynetwork
+  port: 5432
+  password: Passw0rd
 
 container2:
   name: postgres

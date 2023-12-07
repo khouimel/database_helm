@@ -8,16 +8,11 @@ replicaCount: 2
 container1:
   name: myapps
   image: houimel/database_image:latest
-  network: mynetwork
-  port: 5432
-  password: Passw0rd
-
-container2:
-  name: postgres
   image: postgres:latest
   network: mynetwork
   port: 5432
   password: Passw0rd
+
 
 
 imagePullSecrets: []

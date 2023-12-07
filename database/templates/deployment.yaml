@@ -1,33 +1,30 @@
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}
-  labels:
-    app: {{ .Values.appName }}
+  name: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.appName }}
-      tier: frontend
+      app: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}
-        tier: frontend
-    spec: # Pod spec
+        app: {{ .Chart.Name }}
+        release: {{ .Release.Name }}
+    spec:
       containers:
-      - name: mycontainer
-        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-        ports:
-        - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: {{ .Values.configmap.name }}
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"    # 500milliCPUs (1/2 CPU)
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+        - name: {{ .Values.container.name }}
+          image: {{ .Values.container.image }}
+          args: {{ .Values.container.args | quote }}
+      {{- if .Values.network.name }}
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "2"
+      hostname: example.com
+      {{- end }}
+

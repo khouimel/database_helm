@@ -5,10 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: houimel/database_image
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: latest
+  network: mynetwork
+  port: 5432
+  password: Passw0rd
 
 imagePullSecrets: []
 nameOverride: ""

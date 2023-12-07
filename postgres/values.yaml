@@ -9,7 +9,12 @@ replicaCount: 1
 container:
   name: postgres
   image: docker.io/library/postgres:latest
-  network: mynetwork
+  network: 
+    name: mynetwork
+    subnet: "10.89.5.0/24"
+    gateway: "10.89.5.1"
+    internal: false
+    dns_enabled: true
   port: 5432
   password: Passw0rd
 

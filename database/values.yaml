@@ -4,12 +4,19 @@
 
 replicaCount: 2
 
-image:
-  repository: houimel/database_image
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+
+container1:
+  name: my-python-container
+  image: houimel/database_image:latest
+  # Other configuration options for the existing container
+
+container2:
+  name: postgres
+  image: postgres:tag
   network: mynetwork
+  port: 5432
+  password: Passw0rd
+
 
 imagePullSecrets: []
 nameOverride: ""

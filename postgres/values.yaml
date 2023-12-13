@@ -15,7 +15,7 @@ container:
     gateway: "10.89.5.1"
     internal: false
     dns_enabled: true
-  port: 5432
+  port: 80
   password: Passw0rd
 
 

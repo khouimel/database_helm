@@ -11,6 +11,13 @@ container1:
   network: mynetwork
   port: 80
   password: Passw0rd
+
+postgres:
+  name: postgres
+  image: docker.io/library/postgres:latest
+  network: mynetwork
+  port: 80
+  password: Passw0rd
   
 
 

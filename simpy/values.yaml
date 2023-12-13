@@ -1,0 +1,16 @@
+
+
+replicaCount: 1
+
+image:
+  repository: docker.io/houimel/simpy
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  name: mypythonapp
+  type: ClusterIP
+  port: 80

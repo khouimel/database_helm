@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "factory.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "factory.name" . }}
+    helm.sh/chart: {{ include "factory.chart" . }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+  selector:
+    app.kubernetes.io/name: {{ include "factory.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

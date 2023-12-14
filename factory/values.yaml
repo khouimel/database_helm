@@ -1,0 +1,25 @@
+
+
+replicaCount: 1
+
+image:
+  repository: docker.io/houimel/factory
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  name: factory
+  type: ClusterIP
+  port: 80
+
+postgres:
+  image: postgres
+  containerName: factory_db
+  environment:
+    POSTGRES_PASSWORD: Passw0rd
+  port: 5432
+  database: factorydb
+  user: factoryuser

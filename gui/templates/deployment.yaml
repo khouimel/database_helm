@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gui-deployment
+spec:
+  replicas: {{ .Values.gui.replicas }}
+  selector:
+    matchLabels:
+      app: gui
+  template:
+    metadata:
+      labels:
+        app: gui
+    spec:
+      containers:
+        - name: gui
+          image: {{ .Values.gui.image }}
+          ports:
+            - containerPort: {{ .Values.gui.service.targetPort }}
+      imagePullSecrets:
+        - name: {{ .Values.gui.imagePullSecret }}
